@@ -654,19 +654,18 @@
     }
   });
 
-  /* ── YouTube ── */
+  /* ── YouTube: carga la API pero NO reproduce hasta que el usuario pulse Abrir ── */
   const YT_ID = 's_GNpXbCkDo';
   let player, musicPlaying = false, playerReady = false;
 
   window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('yt-player', {
       videoId: YT_ID,
-      playerVars: { autoplay: 1, loop: 1, playlist: YT_ID, controls: 0, disablekb: 1, fs: 0, rel: 0, mute: 1 },
+      playerVars: { autoplay: 0, loop: 1, playlist: YT_ID, controls: 0, disablekb: 1, fs: 0, rel: 0 },
       events: {
-        onReady: function(e) {
+        onReady: function() {
           playerReady = true;
-          e.target.mute();
-          e.target.playVideo();
+          /* NO reproducir aquí — esperar al clic del usuario */
         }
       }
     });
@@ -677,29 +676,22 @@
     document.head.appendChild(tag);
   })();
 
-  /* ── Splash: UN solo botón, UN solo listener ── */
+  /* ── Splash: al pulsar Abrir → ocultar splash + iniciar canción ── */
   document.getElementById('splashBtn').addEventListener('click', function() {
     document.getElementById('splash').classList.add('oculto');
-    // Desbloquear audio tras gesto del usuario
-    if (playerReady && player) {
-      player.unMute();
-      player.setVolume(70);
-      player.playVideo();
-      document.getElementById('musicBtn').classList.add('playing');
-      musicPlaying = true;
-    } else {
-      // Si el player aún no cargó, esperar y desbloquear después
-      const interval = setInterval(function() {
-        if (playerReady && player) {
-          player.unMute();
-          player.setVolume(70);
-          player.playVideo();
-          document.getElementById('musicBtn').classList.add('playing');
-          musicPlaying = true;
-          clearInterval(interval);
-        }
-      }, 300);
+
+    function startMusic() {
+      if (playerReady && player) {
+        player.unMute();
+        player.setVolume(70);
+        player.playVideo();
+        document.getElementById('musicBtn').classList.add('playing');
+        musicPlaying = true;
+      } else {
+        setTimeout(startMusic, 300);
+      }
     }
+    startMusic();
   });
 
   /* ── Toggle música ── */
