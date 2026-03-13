@@ -56,6 +56,79 @@
       to   { opacity: 1; }
     }
 
+    /* ── SPLASH ── */
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #1a1200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity .8s ease;
+    }
+    #splash.oculto {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #splash-heart {
+      font-size: 3rem;
+      animation: latido 1.2s ease-in-out infinite;
+    }
+    @keyframes latido {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.25); }
+    }
+    #splash-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold-pale);
+      text-shadow: 0 0 40px rgba(212,160,23,.6);
+      line-height: 1.3;
+    }
+    #splash-title small {
+      display: block;
+      font-size: .55em;
+      letter-spacing: .12em;
+      color: var(--gold-mid);
+      margin-top: .5rem;
+    }
+    #splashBtn {
+      font-family: 'Cinzel', serif;
+      font-size: .88rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      border: none;
+      padding: 1rem 2.8rem;
+      cursor: pointer;
+      box-shadow: 0 0 40px rgba(212,160,23,.5);
+      transition: transform .2s, box-shadow .2s;
+    }
+    #splashBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 60px rgba(212,160,23,.8);
+    }
+    .splash-stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 25%, rgba(245,216,122,.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 15%, rgba(245,216,122,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 80%, rgba(245,216,122,.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 60%, rgba(245,216,122,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 55%, rgba(245,216,122,.6) 0%, transparent 100%);
+      pointer-events: none;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+
     /* ── Golden petals ── */
     .petal-container {
       position: fixed;
@@ -76,10 +149,10 @@
       box-shadow: 0 0 6px rgba(212,160,23,.5);
     }
     @keyframes fall {
-      0%   { transform: translateY(-20px) rotate(0deg) translateX(0);      opacity: 0; }
+      0%   { transform: translateY(-20px) rotate(0deg) translateX(0);     opacity: 0; }
       10%  { opacity: .9; }
       90%  { opacity: .5; }
-      100% { transform: translateY(110vh) rotate(360deg) translateX(60px);  opacity: 0; }
+      100% { transform: translateY(110vh) rotate(360deg) translateX(60px); opacity: 0; }
     }
 
     /* ── Header ── */
@@ -95,7 +168,6 @@
       overflow: hidden;
       z-index: 2;
     }
-
     .bg-ornament {
       position: absolute;
       inset: 0;
@@ -104,7 +176,6 @@
         radial-gradient(ellipse 50% 50% at 80% 20%, rgba(245,216,122,.12) 0%, transparent 60%),
         radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,134,11,.15) 0%, transparent 60%);
     }
-
     header::after {
       content: '';
       position: absolute;
@@ -112,12 +183,9 @@
       height: min(580px, 88vw);
       border-radius: 50%;
       border: 1px solid rgba(212,160,23,.18);
-      box-shadow:
-        0 0 80px  rgba(212,160,23,.1),
-        0 0 160px rgba(212,160,23,.06);
+      box-shadow: 0 0 80px rgba(212,160,23,.1), 0 0 160px rgba(212,160,23,.06);
       pointer-events: none;
     }
-
     .crown {
       font-family: 'Cinzel', serif;
       font-size: clamp(.65rem, 1.5vw, .85rem);
@@ -128,7 +196,6 @@
       opacity: 0;
       animation: fadeUp .9s ease forwards .3s;
     }
-
     h1 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
@@ -140,11 +207,7 @@
       opacity: 0;
       animation: fadeUp 1s ease forwards .6s;
     }
-    h1 em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
+    h1 em { font-style: italic; color: var(--gold-light); }
     .subtitle {
       font-size: clamp(1rem, 2.5vw, 1.35rem);
       font-style: italic;
@@ -154,7 +217,6 @@
       opacity: 0;
       animation: fadeUp 1s ease forwards .9s;
     }
-
     .divider {
       display: flex;
       align-items: center;
@@ -170,7 +232,6 @@
       background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
     .divider-heart { color: var(--gold-light); font-size: 1.1rem; }
-
     .scroll-hint {
       position: absolute;
       bottom: 2.5rem;
@@ -189,7 +250,6 @@
       background: linear-gradient(to bottom, var(--gold), transparent);
       margin: .6rem auto 0;
     }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -200,13 +260,7 @@
 
     /* ── Sections ── */
     main { position: relative; z-index: 2; }
-
-    section {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
+    section { max-width: 780px; margin: 0 auto; padding: 5rem 2rem; }
     .section-label {
       font-family: 'Cinzel', serif;
       font-size: .72rem;
@@ -222,9 +276,8 @@
       border: 1px solid rgba(212,160,23,.3);
       border-left: 4px solid var(--gold);
       padding: 2.5rem 3rem;
-      margin: 0 auto;
       position: relative;
-      box-shadow: 0 4px 60px rgba(212,160,23,.08), inset 0 0 40px rgba(212,160,23,.02);
+      box-shadow: 0 4px 60px rgba(212,160,23,.08);
       backdrop-filter: blur(4px);
     }
     .quote-card::before {
@@ -323,18 +376,10 @@
       display: block;
       margin-bottom: .5rem;
     }
-    .reason-text {
-      font-size: 1rem;
-      line-height: 1.6;
-      font-style: italic;
-      color: var(--gold-pale);
-    }
+    .reason-text { font-size: 1rem; line-height: 1.6; font-style: italic; color: var(--gold-pale); }
 
     /* ── Heart button ── */
-    .cta-section {
-      text-align: center;
-      padding: 4rem 2rem 6rem;
-    }
+    .cta-section { text-align: center; padding: 4rem 2rem 6rem; }
     .heart-btn {
       display: inline-flex;
       align-items: center;
@@ -368,24 +413,9 @@
       z-index: 9999;
     }
     @keyframes floatUp {
-      0%   { transform: translateY(0) scale(1);   opacity: 1; }
+      0%   { transform: translateY(0) scale(1);      opacity: 1; }
       100% { transform: translateY(-160px) scale(.4); opacity: 0; }
     }
-
-    /* ── Footer ── */
-    footer {
-      background: rgba(0,0,0,.5);
-      border-top: 1px solid rgba(212,160,23,.18);
-      color: var(--gold-mid);
-      text-align: center;
-      padding: 2.5rem;
-      font-size: .82rem;
-      letter-spacing: .1em;
-      font-style: italic;
-      position: relative;
-      z-index: 2;
-    }
-    footer span { color: var(--gold-light); }
 
     /* ── Firma ── */
     .firma-bloque {
@@ -425,6 +455,21 @@
       color: rgba(212,160,23,.5);
     }
 
+    /* ── Footer ── */
+    footer {
+      background: rgba(0,0,0,.5);
+      border-top: 1px solid rgba(212,160,23,.18);
+      color: var(--gold-mid);
+      text-align: center;
+      padding: 2.5rem;
+      font-size: .82rem;
+      letter-spacing: .1em;
+      font-style: italic;
+      position: relative;
+      z-index: 2;
+    }
+    footer span { color: var(--gold-light); }
+
     /* ── Reveal on scroll ── */
     .reveal {
       opacity: 0;
@@ -432,7 +477,6 @@
       transition: opacity .9s ease, transform .9s ease;
     }
     .reveal.visible { opacity: 1; transform: none; }
-
     .shimmer-sep {
       max-width: 300px;
       margin: 0 auto;
@@ -441,10 +485,45 @@
       position: relative;
       z-index: 2;
     }
+
+    /* ── Botón música ── */
+    #musicBtn {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 9999;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(212,160,23,.5);
+      background: rgba(26,18,0,.85);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(212,160,23,.2);
+      transition: box-shadow .3s, border-color .3s;
+      font-size: 1.3rem;
+    }
+    #musicBtn:hover { box-shadow: 0 0 35px rgba(212,160,23,.45); border-color: var(--gold); }
+    #musicBtn.playing { animation: musicPulse 2s ease-in-out infinite; }
+    @keyframes musicPulse {
+      0%,100% { box-shadow: 0 0 15px rgba(212,160,23,.25); }
+      50%      { box-shadow: 0 0 35px rgba(212,160,23,.55); }
+    }
   </style>
 </head>
 <body>
 
+<!-- ── SPLASH (único) ── -->
+<div id="splash">
+  <div class="splash-stars"></div>
+  <div id="splash-heart">♥</div>
+  <div id="splash-title">
+    Para ti, Adriana
+    <small>Toca para abrir tu sorpresa</small>
+  </div>
+  <button id="splashBtn">✦ Abrir ✦</button>
+</div>
+
+<!-- Pétalos -->
 <div class="petal-container" id="petals"></div>
 
 <!-- ── HERO ── -->
@@ -462,16 +541,13 @@
 </header>
 
 <main>
-
   <div class="shimmer-sep reveal"></div>
 
   <!-- CITA -->
   <section class="reveal">
     <p class="section-label">✦ Una frase que me recuerda a ti</p>
     <div class="quote-card">
-      <p class="quote-text">
-        "Desde que estás en mi vida, todo tiene un poquito más de sentido."
-      </p>
+      <p class="quote-text">"Desde que estás en mi vida, todo tiene un poquito más de sentido."</p>
       <p class="quote-author">—TE AMOOOO 🫰</p>
     </div>
   </section>
@@ -483,19 +559,9 @@
     <p class="section-label">✦ Lo que guarda mi corazón</p>
     <div class="letter">
       <h2>Mi amor,</h2>
-      <p>
-        Hay personas que llegan a la vida de uno y, sin darse cuenta, empiezan a cambiar muchas cosas.
-        Tú hiciste eso conmigo. Poco a poco te volviste alguien muy importante en mis días, en mis pensamientos y en mi tranquilidad.
-      </p>
-      <p>
-        Contigo entendí que el amor no siempre se trata de grandes palabras o de momentos perfectos,
-        sino de sentir paz al estar con alguien, de reír sin razón y de saber que estás en el lugar correcto.
-      </p>
-      <p>
-        Gracias por estar en mi vida, por elegirme y por caminar conmigo.
-        No sabes cuánto valoro cada momento que compartimos, incluso los más simples.
-        Y si algo tengo claro hoy, es que volvería a elegirte una y otra vez… porque tenerte a mi lado es de las cosas más bonitas que me han pasado.
-      </p>
+      <p>Hay personas que llegan a la vida de uno y, sin darse cuenta, empiezan a cambiar muchas cosas. Tú hiciste eso conmigo. Poco a poco te volviste alguien muy importante en mis días, en mis pensamientos y en mi tranquilidad.</p>
+      <p>Contigo entendí que el amor no siempre se trata de grandes palabras o de momentos perfectos, sino de sentir paz al estar con alguien, de reír sin razón y de saber que estás en el lugar correcto.</p>
+      <p>Gracias por estar en mi vida, por elegirme y por caminar conmigo. No sabes cuánto valoro cada momento que compartimos, incluso los más simples. Y si algo tengo claro hoy, es que volvería a elegirte una y otra vez… porque tenerte a mi lado es de las cosas más bonitas que me han pasado.</p>
       <p class="signature">— De Esaú, para Adriana ♥</p>
     </div>
   </section>
@@ -507,51 +573,30 @@
     <p class="section-label" style="text-align:center">✦ Razones para amarte</p>
     <h2 class="reasons-title">Por estas cosas y mil más</h2>
     <div class="reasons-grid">
-      <div class="reason-item">
-        <span class="reason-number">01</span>
-        <p class="reason-text">Por tu sonrisa, porque siempre logra alegrarme incluso en mis días más pesados.</p>
-      </div>
-      <div class="reason-item">
-        <span class="reason-number">02</span>
-        <p class="reason-text">Por la forma en que me escuchas y haces que todo lo que digo importe.</p>
-      </div>
-      <div class="reason-item">
-        <span class="reason-number">03</span>
-        <p class="reason-text">Por tu fuerza, porque aun cuando todo se pone difícil, sigues adelante.</p>
-      </div>
-      <div class="reason-item">
-        <span class="reason-number">04</span>
-        <p class="reason-text">Por ese lado tierno tuyo que pocas personas conocen y que yo tengo la suerte de ver.</p>
-      </div>
-      <div class="reason-item">
-        <span class="reason-number">05</span>
-        <p class="reason-text">Porque sin darte cuenta me motivas a ser mejor cada día.</p>
-      </div>
-      <div class="reason-item">
-        <span class="reason-number">06</span>
-        <p class="reason-text">Por quedarte conmigo, por elegirme y por construir esto juntos día tras día.</p>
-      </div>
+      <div class="reason-item"><span class="reason-number">01</span><p class="reason-text">Por tu sonrisa, porque siempre logra alegrarme incluso en mis días más pesados.</p></div>
+      <div class="reason-item"><span class="reason-number">02</span><p class="reason-text">Por la forma en que me escuchas y haces que todo lo que digo importe.</p></div>
+      <div class="reason-item"><span class="reason-number">03</span><p class="reason-text">Por tu fuerza, porque aun cuando todo se pone difícil, sigues adelante.</p></div>
+      <div class="reason-item"><span class="reason-number">04</span><p class="reason-text">Por ese lado tierno tuyo que pocas personas conocen y que yo tengo la suerte de ver.</p></div>
+      <div class="reason-item"><span class="reason-number">05</span><p class="reason-text">Porque sin darte cuenta me motivas a ser mejor cada día.</p></div>
+      <div class="reason-item"><span class="reason-number">06</span><p class="reason-text">Por quedarte conmigo, por elegirme y por construir esto juntos día tras día.</p></div>
     </div>
   </section>
 
-  <!-- BOTÓN -->
+  <!-- BOTÓN CORAZÓN -->
   <div class="cta-section reveal">
-    <p style="font-style:italic; color:var(--gold-mid); margin-bottom:1.5rem; font-size:1.1rem;">
-      ¿Sabes cuánto te quiero?
-    </p>
+    <p style="font-style:italic; color:var(--gold-mid); margin-bottom:1.5rem; font-size:1.1rem;">¿Sabes cuánto te quiero?</p>
     <button class="heart-btn" id="heartBtn">
       <span class="icon">♥</span> Tócame para saberlo <span class="icon">♥</span>
     </button>
     <p id="heartMsg" style="margin-top:1.5rem; font-size:1.2rem; font-style:italic; color:var(--gold-light); min-height:2rem;"></p>
   </div>
 
-  <!-- ── FIRMA ── -->
+  <!-- FIRMA -->
   <div class="firma-bloque reveal">
     <div class="firma-linea"></div>
     <div class="firma-nombres">Esaú <span>♥</span> Adriana</div>
-    <p class="firma-sub">De Esaú, para Adriana&nbsp;·&nbsp;</p>
+    <p class="firma-sub">De Esaú, para Adriana &nbsp;·&nbsp; Para siempre</p>
   </div>
-
 </main>
 
 <footer>
@@ -559,8 +604,14 @@
   <p>Te amo mi niña hermosa</p>
 </footer>
 
+<!-- YouTube player oculto -->
+<div id="yt-player" style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;z-index:-1;"></div>
+
+<!-- Botón música -->
+<button id="musicBtn" title="Música">🎵</button>
+
 <script>
-  /* Petals */
+  /* ── Pétalos ── */
   const container = document.getElementById('petals');
   for (let i = 0; i < 28; i++) {
     const p = document.createElement('div');
@@ -572,13 +623,13 @@
     container.appendChild(p);
   }
 
-  /* Scroll reveal */
+  /* ── Scroll reveal ── */
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  /* Heart button */
+  /* ── Heart button ── */
   const messages = [
     "Te amo más de lo que a veces sé explicar. ❤️",
     "Te amo más de lo que las palabras pueden decir. 💛",
@@ -602,83 +653,70 @@
       setTimeout(() => h.remove(), 1800);
     }
   });
-</script>
 
-<!-- ── YouTube player oculto ── -->
-<div id="yt-player" style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;z-index:-1;"></div>
-
-<!-- ── Botón flotante de música ── -->
-<button id="musicBtn" title="Música" style="
-  position: fixed;
-  bottom: 2rem; right: 2rem;
-  z-index: 9999;
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(212,160,23,.5);
-  background: rgba(26,18,0,.85);
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 20px rgba(212,160,23,.2);
-  transition: box-shadow .3s, border-color .3s;
-  font-size: 1.3rem;
-">🎵</button>
-
-<style>
-  #musicBtn:hover { box-shadow: 0 0 35px rgba(212,160,23,.45); border-color: var(--gold); }
-  #musicBtn.playing { animation: musicPulse 2s ease-in-out infinite; }
-  @keyframes musicPulse {
-    0%,100% { box-shadow: 0 0 15px rgba(212,160,23,.25); }
-    50%      { box-shadow: 0 0 35px rgba(212,160,23,.55); }
-  }
-</style>
-
-<script>
+  /* ── YouTube ── */
   const YT_ID = 's_GNpXbCkDo';
-  let player, playing = true;
+  let player, musicPlaying = false, playerReady = false;
 
   window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('yt-player', {
       videoId: YT_ID,
-      playerVars: {
-        autoplay: 1,
-        loop: 1,
-        playlist: YT_ID,
-        controls: 0,
-        disablekb: 1,
-        fs: 0,
-        modestbranding: 1,
-        rel: 0,
-        mute: 0,
-      },
+      playerVars: { autoplay: 1, loop: 1, playlist: YT_ID, controls: 0, disablekb: 1, fs: 0, rel: 0, mute: 1 },
       events: {
-        onReady: e => {
-          e.target.setVolume(70);
+        onReady: function(e) {
+          playerReady = true;
+          e.target.mute();
           e.target.playVideo();
-          document.getElementById('musicBtn').classList.add('playing');
         }
       }
     });
   };
-
   (function(){
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(tag);
   })();
 
-  document.getElementById('musicBtn').addEventListener('click', function(){
+  /* ── Splash: UN solo botón, UN solo listener ── */
+  document.getElementById('splashBtn').addEventListener('click', function() {
+    document.getElementById('splash').classList.add('oculto');
+    // Desbloquear audio tras gesto del usuario
+    if (playerReady && player) {
+      player.unMute();
+      player.setVolume(70);
+      player.playVideo();
+      document.getElementById('musicBtn').classList.add('playing');
+      musicPlaying = true;
+    } else {
+      // Si el player aún no cargó, esperar y desbloquear después
+      const interval = setInterval(function() {
+        if (playerReady && player) {
+          player.unMute();
+          player.setVolume(70);
+          player.playVideo();
+          document.getElementById('musicBtn').classList.add('playing');
+          musicPlaying = true;
+          clearInterval(interval);
+        }
+      }, 300);
+    }
+  });
+
+  /* ── Toggle música ── */
+  document.getElementById('musicBtn').addEventListener('click', function() {
     if (!player) return;
-    if (playing) {
+    if (musicPlaying) {
       player.pauseVideo();
       this.textContent = '🔇';
       this.classList.remove('playing');
     } else {
+      player.unMute();
+      player.setVolume(70);
       player.playVideo();
       this.textContent = '🎵';
       this.classList.add('playing');
     }
-    playing = !playing;
+    musicPlaying = !musicPlaying;
   });
 </script>
 </body>
